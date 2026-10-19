@@ -39,83 +39,115 @@
 
 ## What This Does
 
-<!-- Your community, and what your classifier sorts posts into. Three or four
-     sentences. -->
-TakeMeter is a text classification model that categorizes posts from the r/wallstreetbets Reddit community.
+TakeMeter is a text classification model that categorizes
+financial questions from the Personal Finance & Money
+Stack Exchange community.
 
-The goal is to identify different types of financial discussions, including memes, financial news, market speculation, and analysis.
+The goal is to identify different types of financial
+discussions based on the primary purpose of each post,
+such as understanding financial concepts, seeking financial
+advice, asking about regulations, or resolving financial
+problems.
 
-The classifier uses four labels: meme_reaction, information, hot_take, and analysis.
+The classifier uses four labels: concept, advice,
+regulation, and troubleshooting.
 
-The model will be fine-tuned on 200 manually reviewed Reddit posts to learn the differences between these categories.
-
+The model will be fine-tuned on 200 manually reviewed
+posts to learn the differences between these categories.
 
 ---
+
 ## Label Taxonomy
 
-### `meme_reaction`
+### `concept`
 
 **Definition:**
-A post primarily expressing humor, sarcasm, frustration,
-excitement, or emotional reactions to financial markets,
-investments, or trading experiences.
 
-**Example 1 (placeholder):**
-> My portfolio is down 40%. At this point, I'm just donating
-> money to Wall Street.
+A post primarily seeking an explanation of financial
+concepts, economic principles, calculations, or the
+mechanisms behind financial systems.
 
-**Example 2 (placeholder):**
-> NVIDIA went up 10% right after I sold. You're welcome, guys.
+**Example 1:**
+> Why is Market cap higher than equity/book value?
 
-### `information`
+**Example 2:**
+> What exactly is the source of the equity risk premium?
 
-**Definition:**
-A post primarily sharing financial news, market events, economic data, or company announcements without substantial personal interpretation.
-
-**Example 1 (placeholder):**
-> The Federal Reserve announced a 25-basis-point interest rate cut today.
-
-**Example 2 (placeholder):**
-> Apple reported quarterly revenue of $94 billion, exceeding analysts' expectations.
-
-### `hot_take`
+### `advice`
 
 **Definition:**
-A post expressing a strong financial opinion, prediction, or speculation without providing sufficient supporting evidence or reasoning.
 
-**Example 1 (placeholder):**
-> Tesla is going to $500 by December. Anyone selling right now is making a huge mistake.
+A post requesting recommendations, strategies, or
+guidance to help make a personal financial decision.
 
-**Example 2 (placeholder):**
-> The stock market is about to crash. This rally is completely fake.
+**Example 1:**
+> How to invest long-term when moving countries frequently?
 
-### `analysis`
+**Example 2:**
+> How should I split my monthly income between savings,
+> expenses, and investments?
+
+### `regulation`
 
 **Definition:**
-A post interpreting financial information using specific evidence and logical reasoning to explain market trends, evaluate investments, or support financial predictions.
 
-**Example 1 (placeholder):**
-> NVIDIA's revenue increased 30%, but its valuation remains 50% higher compared to historical averages.
-> If earnings growth slows, the stock could face downward pressure.
+A post primarily asking about the interpretation,
+application, or requirements of financial laws,
+tax regulations, insurance rules, or legal obligations.
 
-**Example 2 (placeholder):**
-> Treasury yields have increased 30%. Rising yields can increase borrowing costs and put pressure on equity valuations.
+**Example 1:**
+> Combining Schedule C and Schedule E business miles
+> for the 50% business-use test
+
+**Example 2:**
+> Tax Reporting of options on GLD
+
+### `troubleshooting`
+
+**Definition:**
+
+A post seeking to identify, diagnose, or resolve
+a specific problem involving a financial account,
+transaction, payment system, or financial software.
+
+**Example 1:**
+> How can I access my 401k?
+
+**Example 2:**
+> Credit card - Transaction was voided but hasn’t reflected
 
 ---
 
 ### The hardest boundary
 
 **Which two labels:**
-`hot_take` and `analysis`
+
+`advice` and `troubleshooting`
 
 **The decision rule I used every time:**
 
-If a post makes a financial prediction or expresses an investment opinion without explaining the reasoning behind it, I classify it as `hot_take`.
+If a post describes an existing financial problem,
+unexpected behavior, failed transaction, or account
+issue and asks how to resolve it, I classify it
+as `troubleshooting`.
 
-If the post supports its argument with specific evidence and explains how that evidence supports its conclusion, I classify it as `analysis`.
+If a post asks for recommendations, strategies,
+or guidance about a financial decision without
+primarily focusing on fixing an existing malfunction
+or unexpected problem, I classify it as `advice`.
 
-Simply mentioning a stock price, percentage, or financial statistic does not automatically qualify a post as analysis. The author must use the information to develop a reasoned argument.
----
+For example, a question about how to access an
+inaccessible retirement account is classified as
+`troubleshooting`, while a question about how to
+invest retirement savings is classified as `advice`.
+
+If a post involves both, I classify it according
+to the author's primary question rather than
+individual keywords.
+
+For questions primarily about legal or tax
+requirements, `regulation` takes precedence over
+`advice` and `troubleshooting`.
 
 
 ## The Dataset
