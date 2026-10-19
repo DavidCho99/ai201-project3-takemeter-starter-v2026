@@ -51,46 +51,72 @@ The model will be fine-tuned on 200 manually reviewed Reddit posts to learn the 
 
 
 ---
-
 ## Label Taxonomy
 
-<!-- Each label: a one-sentence definition and two real examples from your
-     reading. Then your decision rule for the hardest boundary.
-
-     The decision rule is worth a point on its own and it's the thing most
-     people leave out. Every taxonomy has a hardest boundary. Name yours. -->
-
-### `label_one`
+### `meme_reaction`
 
 **Definition:**
+A post primarily expressing humor, sarcasm, frustration,
+excitement, or emotional reactions to financial markets,
+investments, or trading experiences.
 
-**Example 1:**
->
+**Example 1 (placeholder):**
+> My portfolio is down 40%. At this point, I'm just donating
+> money to Wall Street.
 
-**Example 2:**
->
+**Example 2 (placeholder):**
+> NVIDIA went up 10% right after I sold. You're welcome, guys.
 
-### `label_two`
+### `information`
 
 **Definition:**
+A post primarily sharing financial news, market events, economic data, or company announcements without substantial personal interpretation.
 
-**Example 1:**
->
+**Example 1 (placeholder):**
+> The Federal Reserve announced a 25-basis-point interest rate cut today.
 
-**Example 2:**
->
+**Example 2 (placeholder):**
+> Apple reported quarterly revenue of $94 billion, exceeding analysts' expectations.
+
+### `hot_take`
+
+**Definition:**
+A post expressing a strong financial opinion, prediction, or speculation without providing sufficient supporting evidence or reasoning.
+
+**Example 1 (placeholder):**
+> Tesla is going to $500 by December. Anyone selling right now is making a huge mistake.
+
+**Example 2 (placeholder):**
+> The stock market is about to crash. This rally is completely fake.
+
+### `analysis`
+
+**Definition:**
+A post interpreting financial information using specific evidence and logical reasoning to explain market trends, evaluate investments, or support financial predictions.
+
+**Example 1 (placeholder):**
+> NVIDIA's revenue increased 30%, but its valuation remains 50% higher compared to historical averages.
+> If earnings growth slows, the stock could face downward pressure.
+
+**Example 2 (placeholder):**
+> Treasury yields have increased 30%. Rising yields can increase borrowing costs and put pressure on equity valuations.
+
+---
 
 ### The hardest boundary
 
 **Which two labels:**
+`hot_take` and `analysis`
 
 **The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
 
+If a post makes a financial prediction or expresses an investment opinion without explaining the reasoning behind it, I classify it as `hot_take`.
 
+If the post supports its argument with specific evidence and explains how that evidence supports its conclusion, I classify it as `analysis`.
 
+Simply mentioning a stock price, percentage, or financial statistic does not automatically qualify a post as analysis. The author must use the information to develop a reasoned argument.
 ---
+
 
 ## The Dataset
 
