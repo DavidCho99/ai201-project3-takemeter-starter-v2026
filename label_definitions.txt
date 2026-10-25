@@ -5,6 +5,7 @@
 #
 # Delete the examples below and put yours in.
 
-analysis: makes an argument backed by a specific, checkable fact
-hot_take: a confident claim with no support offered
-reaction: an immediate response to something that just happened
+concept: A question primarily asking for an explanation of financial principles, calculations, or how a financial mechanism works.
+regulation: A question primarily asking about the interpretation or application of tax law, financial regulation, insurance rules, or legal obligations.
+advice: A question primarily seeking a recommendation, strategy, or guidance for making a financial choice.
+troubleshooting: A question primarily trying to diagnose or resolve a particular problem with a financial account, transaction, payment, or application.
