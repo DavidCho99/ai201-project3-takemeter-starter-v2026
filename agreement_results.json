@@ -1,0 +1,18 @@
+{
+  "compared": 30,
+  "agreed": 28,
+  "agreement_rate": 0.9333333333333333,
+  "disagreements": [
+    {
+      "text": "Three of us ran the same session on the same day, different shoes, within 10 seconds of each other over 5 miles. I'm not saying shoes do nothing, but whatever they do was smaller than the noise between three people.",
+      "staff": "analysis",
+      "mine": "hot_take"
+    },
+    {
+      "text": "Times are down about 3% since the shoe rules changed, so obviously the shoes are the whole story and the sport has a problem.",
+      "staff": "hot_take",
+      "mine": "analysis"
+    }
+  ],
+  "staff_posts_not_in_mine": 0
+}

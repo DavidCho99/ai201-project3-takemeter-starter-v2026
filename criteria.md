@@ -1,143 +1,41 @@
-# Acceptance criteria — TakeMeter
+# Acceptance Criteria — TakeMeter
 
-Five criteria that say what "working" means for this classifier, written in
-unit 5 **before** anything was trained.
+These five acceptance criteria define success for TakeMeter **before model training**. TakeMeter classifies 200 Personal Finance & Money Stack Exchange questions as `concept`, `advice`, `regulation`, or `troubleshooting`.
 
-**All five are yours this time.** None are given. You've had two projects of
-practice.
+## 1. Overall accuracy
 
-An acceptance criterion names a number. *"The model is accurate"* is an
-opinion. *"Every label has an F1 of at least 0.60 on the held-out set"* is a
-criterion.
+The model must achieve **at least 60% accuracy** on the held-out test set **in each of the three training seeds**.
 
-Under each, write a sentence or two on **why that number**. A reason that says
-something about your data or your taxonomy earns credit — *"I picked 0.60 F1
-for `reaction` because it's my smallest label and I only have about 50
-examples of it"*. A reason that could be attached to any project does not.
-
-> Missing your own targets next unit costs you nothing. Setting a target so
-> easy you can't miss it does.
+**Why this target:** With four labels, a uniform random guess would average 25% accuracy. A 60% target would indicate that the model learned useful differences in question intent rather than merely guessing, while allowing for ambiguity in a test set of approximately 30 posts.
 
 ---
 
-## Pick numbers you can defend
+## 2. Macro F1 score
 
-Not numbers that sound impressive. Three labels means a coin-flip guesser gets
-about 33%, so a target of 0.40 is barely a target. Your number should sit
-somewhere you'd honestly call useful.
+The model must achieve a **macro F1 score of at least 0.50** on the held-out test set **in each of the three seeds**.
 
-**Cover at least three of these five areas.** They're here as prompts, not as a
-form to fill in — a criterion that fits none of them is fine if it names a
-number.
-
-| Area | A question it could answer |
-|---|---|
-| Overall accuracy | How often does it need to be right to be worth using? |
-| Per-label performance | Is one label allowed to be much worse than the others? |
-| Balance | How lopsided can your label counts get before it's a problem? |
-| Consistency | If someone else labelled the same posts, how often should you agree? |
-| Confidence | Should a confident prediction be right more often than an unsure one? |
-
-Two things worth knowing before you pick numbers, because both will affect
-whether you hit them:
-
-- **Your smallest label will have the jumpiest score.** If a label has 50
-  examples, about 8 land in the test split. An F1 computed on 8 examples moves
-  a lot between seeds. A target for that label should be looser than one for
-  your biggest label, and saying so is a good reason.
-- **Unit 6 tests across three seeds, and the target has to hold across all
-  three.** A target of 0.65 against results of 0.71, 0.62, 0.68 is a **miss**.
-  Pick with that in mind — it is stricter than it first sounds.
+**Why this target:** My dataset contains 70 `regulation` posts and 64 `concept` posts, but only 37 `advice` posts and 29 `troubleshooting` posts. Macro F1 weights the four labels equally, so the classifier cannot meet this goal simply by performing well on the two larger categories.
 
 ---
 
-## 1.
+## 3. Minimum per-label F1
 
-<!-- Your criterion. It must name a number. -->
+**Every one of the four labels must have an F1 score of at least 0.30** on the held-out test set **in each of the three seeds**.
 
-
-
-**Why this target:**
-
-
+**Why this target:** `troubleshooting` has only 29 examples, so a 15% test split will typically contain about four or five such posts. One incorrect prediction can substantially change that label's F1. This minimum is deliberately lower than the macro-F1 target, but still requires the model to identify examples from every category.
 
 ---
 
-## 2.
+## 4. Dataset class balance
 
-<!-- Your criterion. -->
+**No label may account for more than 40%** of the 200 examples in `labels.csv`, measured before training.
 
-
-
-**Why this target:**
-
-
+**Why this target:** The current counts are 70 `regulation` (35%), 64 `concept` (32%), 37 `advice` (18.5%), and 29 `troubleshooting` (14.5%). A 40% cap accommodates this naturally uneven distribution while preventing a single category from dominating the training data.
 
 ---
 
-## 3.
+## 5. Agreement with independent human labels
 
-<!-- Your criterion. -->
+On the independently labeled comparison set supplied in Unit 6, **at least 70% of the model's predictions must match the human labels**, measured as the number of exact label matches divided by the number of compared posts.
 
-
-
-**Why this target:**
-
-
-
----
-
-## 4.
-
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
-
-
-
----
-
-## 5.
-
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
-
-
-
----
-
-<!-- ─────────────────────────────────────────────────────────────────────────
-     UNIT 6 — read this before you change anything above.
-
-     If a criterion turns out to be BROKEN rather than merely unmet, you can
-     revise it, and that earns credit. But never delete or edit the original
-     line. Add the revision underneath, like this:
-
-         ## 2. Every label performs acceptably
-
-         The model performs well on all labels.
-
-         **Why this target:** ...
-
-         > **Revised in unit 6:** Every label has an F1 of at least 0.60 on
-         > the held-out set.
-         >
-         > **Why revised:** "performs well" gave me nothing to check. I
-         > couldn't produce a verdict from it at all.
-
-     That's a revision because the criterion couldn't be MEASURED.
-
-     Lowering a target because you missed it is not a revision, and it costs
-     you the point:
-
-         ✗ "Overall accuracy of at least 0.65" → "at least 0.55", because
-            0.65 turned out to be optimistic for 200 examples.
-
-     A number you missed stays where it is, gets diagnosed, and gets a fix
-     attempted. That's where the points are.
-     ───────────────────────────────────────────────────────────────────────── -->
+**Why this target:** The boundary between `advice` and `troubleshooting` can be subjective: a question describing a problem may ask either for a recommendation or for a fix. Requiring 70% exact agreement tests whether the taxonomy is understandable beyond my own labeling, without assuming perfect agreement on borderline questions.

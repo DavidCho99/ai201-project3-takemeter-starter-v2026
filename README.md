@@ -224,24 +224,26 @@ The notebook wrote `results.json` and `test_split.csv` as evidence of this run; 
 <!-- Five criteria across three seeds. The notebook's section 6 prints the
      spread table; the Target and Verdict columns are yours. -->
 
-| Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
-| --------- | ------ | ------- | ------ | --------- | ------- |
-| 1.        |        |         |        |           |         |
-| 2.        |        |         |        |           |         |
-| 3.        |        |         |        |           |         |
-| 4.        |        |         |        |           |         |
-| 5.        |        |         |        |           |         |
+| Measure                | Seed 42 | Seed 7 | Seed 2024 | Spread |
+| ---------------------- | ------- | ------ | --------- | ------ |
+| Overall accuracy       | 0.500   | 0.333  | 0.467     | 0.167  |
+| Macro F1               | 0.307   | 0.125  | 0.282     | 0.182  |
+| F1 — `concept`         | 0.667   | 0.000  | 0.571     | 0.667  |
+| F1 — `advice`          | 0.000   | 0.000  | 0.000     | 0.000  |
+| F1 — `regulation`      | 0.562   | 0.500  | 0.556     | 0.062  |
+| F1 — `troubleshooting` | 0.000   | 0.000  | 0.000     | 0.000  |
 
 ### Confusion matrix
 
 <!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
      An image of a matrix earns nothing. -->
 
-| true \ predicted |     |     |     |
-| ---------------- | --- | --- | --- |
-| ****             |     |     |     |
-| ****             |     |     |     |
-| ****             |     |     |     |
+| true \ predicted    | concept | advice | regulation | troubleshooting |
+| ------------------- | ------- | ------ | ---------- | --------------- |
+| **concept**         | 6       | 0      | 4          | 0               |
+| **advice**          | 1       | 0      | 5          | 0               |
+| **regulation**      | 1       | 0      | 9          | 0               |
+| **troubleshooting** | 0       | 0      | 4          | 0               |
 
 **My biggest off-diagonal number, and what it means:**
 <!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
