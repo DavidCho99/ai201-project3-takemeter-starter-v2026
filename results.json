@@ -1,66 +1,66 @@
 {
   "seed": 42,
-  "n_test": 30,
-  "accuracy": 0.5,
-  "f1_macro": 0.30729166666666663,
+  "n_test": 35,
+  "accuracy": 0.5714285714285714,
+  "f1_macro": 0.44571428571428573,
   "per_label": {
     "concept": {
-      "precision": 0.75,
-      "recall": 0.6,
-      "f1": 0.6666666666666666,
+      "precision": 0.5333333333333333,
+      "recall": 0.8,
+      "f1": 0.64,
       "support": 10
     },
     "advice": {
       "precision": 0.0,
       "recall": 0.0,
       "f1": 0.0,
-      "support": 6
+      "support": 5
     },
     "regulation": {
-      "precision": 0.4090909090909091,
-      "recall": 0.9,
-      "f1": 0.5625,
-      "support": 10
+      "precision": 0.5294117647058824,
+      "recall": 0.8181818181818182,
+      "f1": 0.6428571428571429,
+      "support": 11
     },
     "troubleshooting": {
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1": 0.0,
-      "support": 4
+      "precision": 1.0,
+      "recall": 0.3333333333333333,
+      "f1": 0.5,
+      "support": 9
     }
   },
   "confusion": {
     "concept": {
-      "concept": 6,
+      "concept": 8,
       "advice": 0,
-      "regulation": 4,
+      "regulation": 2,
       "troubleshooting": 0
     },
     "advice": {
-      "concept": 1,
+      "concept": 3,
       "advice": 0,
-      "regulation": 5,
+      "regulation": 2,
       "troubleshooting": 0
     },
     "regulation": {
-      "concept": 1,
+      "concept": 2,
       "advice": 0,
       "regulation": 9,
       "troubleshooting": 0
     },
     "troubleshooting": {
-      "concept": 0,
+      "concept": 2,
       "advice": 0,
       "regulation": 4,
-      "troubleshooting": 0
+      "troubleshooting": 3
     }
   },
   "confidence": {
-    "mean_when_right": 0.36984673142433167,
-    "mean_when_wrong": 0.34292441606521606,
-    "accuracy_most_confident_third": 0.8,
-    "accuracy_least_confident_third": 0.2,
-    "n_per_third": 10
+    "mean_when_right": 0.3465748131275177,
+    "mean_when_wrong": 0.32167381048202515,
+    "accuracy_most_confident_third": 0.9090909090909091,
+    "accuracy_least_confident_third": 0.36363636363636365,
+    "n_per_third": 11
   },
   "device": "mps",
   "device_name": "Apple Silicon GPU (MPS)",
